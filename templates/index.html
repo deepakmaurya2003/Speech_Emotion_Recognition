@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speech Emotion Recognition</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      padding-top: 50px;
+    }
+    .card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 1rem;
+      padding: 2rem;
+      text-align: center;
+    }
+    .btn-custom {
+      background-color: #ffffff;
+      color: #2575fc;
+      font-weight: bold;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="container text-center">
+  <h1 class="mb-5">Speech Emotion Recognition</h1>
+  <div class="card mx-auto" style="max-width: 500px;">
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="file" class="form-label">Upload Audio File (.wav)</label>
+        <input class="form-control" type="file" name="file" accept="audio/wav" required>
+      </div>
+      <button type="submit" class="btn btn-custom">Upload & Predict</button>
+    </form>
+    <hr>
+    <p>Or record audio below</p>
+    <button id="start-btn" class="btn btn-custom">Start Recording</button>
+    <button id="stop-btn" class="btn btn-custom" disabled>Stop & Predict</button>
+    <form id="record-form" action="/predict" method="POST" enctype="multipart/form-data" style="display:none;">
+      <input type="file" name="file" id="audio-blob" style="display:none">
+    </form>
+  </div>
+</div>
+
+<script>
+let mediaRecorder;
+let audioChunks = [];
+
+const startBtn = document.getElementById('start-btn');
+const stopBtn = document.getElementById('stop-btn');
+const form = document.getElementById('record-form');
+const audioBlobInput = document.getElementById('audio-blob');
+
+startBtn.onclick = async () => {
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  mediaRecorder = new MediaRecorder(stream);
+  audioChunks = [];
+  mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+  mediaRecorder.onstop = async () => {
+    const blob = new Blob(audioChunks, { type: 'audio/wav' });
+    const file = new File([blob], 'recording.wav', { type: 'audio/wav' });
+    const dt = new DataTransfer();
+    dt.items.add(file);
+    audioBlobInput.files = dt.files;
+    form.style.display = 'block';
+    form.submit();
+  };
+  mediaRecorder.start();
+  startBtn.disabled = true;
+  stopBtn.disabled = false;
+};
+
+stopBtn.onclick = () => {
+  mediaRecorder.stop();
+  startBtn.disabled = false;
+  stopBtn.disabled = true;
+};
+</script>
+</body>
+</html>
