@@ -1,0 +1,70 @@
+[
+  {
+    "timestamp": "2025-05-28 00:42:29",
+    "emotion": "calm"
+  },
+  {
+    "timestamp": "2025-05-28 00:43:27",
+    "emotion": "calm"
+  },
+  {
+    "timestamp": "2025-05-28 00:43:37",
+    "emotion": "disgust"
+  },
+  {
+    "timestamp": "2025-05-28 00:44:17",
+    "emotion": "fearful"
+  },
+  {
+    "timestamp": "2025-05-28 00:47:36",
+    "emotion": "fearful"
+  },
+  {
+    "timestamp": "2025-05-28 01:05:57",
+    "emotion": "fearful"
+  },
+  {
+    "timestamp": "2025-05-28 02:31:02",
+    "emotion": "fearful"
+  },
+  {
+    "timestamp": "2025-05-28 14:21:20",
+    "emotion": "fearful"
+  },
+  {
+    "timestamp": "2025-05-28 14:26:32",
+    "emotion": "fearful"
+  },
+  {
+    "timestamp": "2025-05-28 14:26:45",
+    "emotion": "calm"
+  },
+  {
+    "timestamp": "2025-05-28 19:12:46",
+    "emotion": "fearful"
+  },
+  {
+    "timestamp": "2025-05-28 19:14:06",
+    "emotion": "calm"
+  },
+  {
+    "timestamp": "2025-05-29 11:10:28",
+    "emotion": "disgust"
+  },
+  {
+    "timestamp": "2025-05-29 11:10:56",
+    "emotion": "fearful"
+  },
+  {
+    "timestamp": "2025-05-29 13:45:16",
+    "emotion": "disgust"
+  },
+  {
+    "timestamp": "2025-05-29 13:59:40",
+    "emotion": "calm"
+  },
+  {
+    "timestamp": "2025-06-15 12:24:11",
+    "emotion": "fearful"
+  }
+]
